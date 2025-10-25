@@ -1,4 +1,4 @@
-{% comment %} Modern, full-featured home page with product listing and newsletter {% endcomment %}
+{% comment %} Modern, full-featured home page with product listing, hero image and information sections {% endcomment %}
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="{{ 'stylesheet.css' | asset_url }}">
 </head>
 <body>
+
+<!-- Top contact bar -->
+<div class="top-bar">
+    <p>V případě dotazů a konzultace volejte ☎ 777344103</p>
+</div>
+
 <header id="header">
     <img src="{{ 'mischa-salon-rgb-black-2.png' | asset_url }}" id="logo" alt="{{ shop.name }}">
     <p class="header-text">Novinky</p>
+    <p class="header-text">Vlasy &amp; styling</p>
     <p class="header-text">Péče o pleť</p>
     <p class="header-text">Péče o tělo</p>
-    <p class="header-text">Vlasy a styling</p>
+    <p class="header-text">Dekorativní kosmetika</p>
+    <p class="header-text">Obchodní podmínky</p>
+    <p class="header-text">Kontakty</p>
     <p class="header-text">Značky</p>
-    <p class="header-text">Kontakt</p>
     <div id="header-right">
         <img src="{{ 'search.png' | asset_url }}" class="header-right" alt="Vyhledávání">
         <a href="/cart"><img src="{{ 'cart.png' | asset_url }}" class="header-right" alt="Košík"></a>
@@ -22,6 +30,17 @@
     </div>
 </header>
 
+<!-- Static hero section -->
+<section class="hero-static">
+    <img src="{{ 'big_banner_oribe.png' | asset_url }}" alt="Obnova" class="hero-image">
+    <div class="hero-content">
+        <h1>Obnova, která je vidět</h1>
+        <p>Odhalte hladší a zářivější pleť den po dni.</p>
+        <a href="/collections/all" class="btn-hero">Chci obnovenou pleť</a>
+    </div>
+</section>
+
+<!-- Slider section (optional) -->
 <section class="slider">
     <div class="slides">
         <img src="{{ 'big_banner_oribe.png' | asset_url }}" alt="">
@@ -30,6 +49,7 @@
     </div>
 </section>
 
+<!-- Featured products -->
 <section class="nabidka-produktu-main">
     <h2>Doporučené produkty</h2>
     {% assign products = collections.frontpage.products | default: collections.all.products %}
@@ -50,6 +70,39 @@
     </div>
 </section>
 
+<!-- Information sections -->
+<section class="information-sections">
+    <div class="contact-section">
+        <h2>Kontakt</h2>
+        <p>Email: <a href="mailto:eshop@mischasalon.cz">eshop@mischasalon.cz</a></p>
+        <p>Telefon: +420 777 344 103</p>
+    </div>
+    <div class="info-section">
+        <h2>Informace pro vás</h2>
+        <ul>
+            <li>Jak nakupovat</li>
+            <li>Obchodní podmínky</li>
+            <li>Podmínky ochrany osobních údajů</li>
+            <li>Doprava a platba</li>
+            <li>Kontakty</li>
+            <li>Blog</li>
+        </ul>
+    </div>
+    <div class="blog-section">
+        <h2>Blog</h2>
+        <ul>
+            <li>Podzim jako čas transformace pleti</li>
+            <li>SPF | Proč je váš nejlepší přítel</li>
+            <li>Jestli ve vaší skincare ještě nemáte SPF, přečtěte si proč s tím začít teď hned.</li>
+        </ul>
+    </div>
+    <div class="payments-section">
+        <h2>Přijímáme online platby</h2>
+        <p>Visa, Mastercard</p>
+    </div>
+</section>
+
+<!-- Newsletter -->
 <section class="newsletter">
     <h2>Přihlaste se k odběru novinek</h2>
     <p>Získejte informace o novinkách a speciálních nabídkách.</p>
