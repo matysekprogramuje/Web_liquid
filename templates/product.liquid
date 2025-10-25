@@ -1,0 +1,43 @@
+{% comment %} Product detail template {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.title }} - {{ shop.name }}</title>
+    <link rel="stylesheet" href="{{ 'stylesheet.css' | asset_url }}">
+</head>
+<body>
+<header id="header">
+    <img src="{{ 'mischa-salon-rgb-black-2.png' | asset_url }}" id="logo" alt="{{ shop.name }}">
+    <p class="header-text">Novinky</p>
+    <p class="header-text">Péče o pleť</p>
+    <p class="header-text">Péče o tělo</p>
+    <p class="header-text">Vlasy a styling</p>
+    <p class="header-text">Značky</p>
+    <p class="header-text">Kontakt</p>
+    <div id="header-rightt">
+        <img src="{{ 'search.png' | asset_url }}" class="header-right" alt="Vyhledávání">
+        <a href="/cart"><img src="{{ 'cart.png' | asset_url }}" class="header-right" alt="Košík"></a>
+        <a href="/account"><img src="{{ 'user.png' | asset_url }}" class="header-right" alt="Účet"></a>
+    </div>
+</header>
+<div class="product-detail">
+    <div class="product-image">
+        <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+    </div>
+    <div class="product-info">
+        <h1>{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <p class="price">{{ product.price | money }}</p>
+        <form action="/cart/add" method="post">
+            <select name="id">
+                {% for variant in product.variants %}
+                    <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Přidat do košíku</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
