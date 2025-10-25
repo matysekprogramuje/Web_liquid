@@ -1,6 +1,6 @@
-{% comment %} Main home template using dynamic product listing {% endcomment %}
+{% comment %} Modern, full-featured home page with product listing and newsletter {% endcomment %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <title>{{ shop.name }}</title>
@@ -15,34 +15,55 @@
     <p class="header-text">Vlasy a styling</p>
     <p class="header-text">Značky</p>
     <p class="header-text">Kontakt</p>
-    <div id="header-rightt">
+    <div id="header-right">
         <img src="{{ 'search.png' | asset_url }}" class="header-right" alt="Vyhledávání">
         <a href="/cart"><img src="{{ 'cart.png' | asset_url }}" class="header-right" alt="Košík"></a>
         <a href="/account"><img src="{{ 'user.png' | asset_url }}" class="header-right" alt="Účet"></a>
     </div>
 </header>
-<div class="slider">
+
+<section class="slider">
     <div class="slides">
         <img src="{{ 'big_banner_oribe.png' | asset_url }}" alt="">
         <img src="{{ 'make-up_iii.png' | asset_url }}" alt="">
         <img src="{{ 'obnova_struktury_pleti_aha_kyseliny.png' | asset_url }}" alt="">
     </div>
-</div>
+</section>
 
-<div class="nabidka-produktu-main">
-{% assign products = collections.frontpage.products | default: collections.all.products %}
-{% for product in products limit:3 %}
-    <div class="featured-produkts">
-        <a href="{{ product.url }}">
-            <img class="obrazek_karta" src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
-            <p class="featured-produkt-text">{{ product.title }}</p>
-        </a>
-        <form action="/cart/add" method="post">
-            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-            <button class="featured-produkt-add-to-cart" type="submit">Přidat do košíku</button>
-        </form>
+<section class="nabidka-produktu-main">
+    <h2>Doporučené produkty</h2>
+    {% assign products = collections.frontpage.products | default: collections.all.products %}
+    <div class="product-grid">
+    {% for product in products limit:8 %}
+        <div class="featured-produkts">
+            <a href="{{ product.url }}">
+                <img class="obrazek_karta" src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+                <p class="featured-produkt-text">{{ product.title }}</p>
+            </a>
+            <p class="featured-produkt-price">{{ product.price | money }}</p>
+            <form action="/cart/add" method="post">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button class="featured-produkt-add-to-cart" type="submit">Přidat do košíku</button>
+            </form>
+        </div>
+    {% endfor %}
     </div>
-{% endfor %}
-</div>
+</section>
+
+<section class="newsletter">
+    <h2>Přihlaste se k odběru novinek</h2>
+    <p>Získejte informace o novinkách a speciálních nabídkách.</p>
+    <form action="/contact#contact_form" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="email" name="customer[email]" placeholder="Zadejte váš e‑mail">
+        <button type="submit">Odebírat</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Všechna práva vyhrazena.</p>
+</footer>
+
 </body>
 </html>
