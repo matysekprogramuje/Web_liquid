@@ -1,0 +1,56 @@
+{% comment %} Cart template {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart - {{ shop.name }}</title>
+    <link rel="stylesheet" href="{{ 'stylesheet.css' | asset_url }}">
+</head>
+<body>
+<header id="header">
+    <img src="{{ 'mischa-salon-rgb-black-2.png' | asset_url }}" id="logo" alt="{{ shop.name }}">
+    <p class="header-text">Novinky</p>
+    <p class="header-text">Péče o pleť</p>
+    <p class="header-text">Péče o tělo</p>
+    <p class="header-text">Vlasy a styling</p>
+    <p class="header-text">Značky</p>
+    <p class="header-text">Kontakt</p>
+    <div id="header-rightt">
+        <img src="{{ 'search.png' | asset_url }}" class="header-right" alt="Vyhledávání">
+        <a href="/cart"><img src="{{ 'cart.png' | asset_url }}" class="header-right" alt="Košík"></a>
+        <a href="/account"><img src="{{ 'user.png' | asset_url }}" class="header-right" alt="Účet"></a>
+    </div>
+</header>
+<div class="cart-page">
+    <h1>Váš košík</h1>
+    {% if cart.item_count > 0 %}
+    <table>
+        <thead>
+            <tr>
+                <th>Produkt</th>
+                <th>Varianta</th>
+                <th>Množství</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart.items %}
+            <tr>
+                <td><img src="{{ item.image | img_url: 'small' }}" alt="{{ item.product.title }}" style="width:50px;"></td>
+                <td>{{ item.product.title }} - {{ item.variant.title }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.line_price | money }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p>Celková cena: {{ cart.total_price | money }}</p>
+    <form action="/cart" method="post">
+        <button type="submit" formaction="/checkout">Pokračovat k platbě</button>
+    </form>
+    {% else %}
+    <p>Váš košík je prázdný.</p>
+    {% endif %}
+</div>
+</body>
+</html>
