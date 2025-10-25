@@ -99,3 +99,22 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
+
+/* Animations improvements */
+.featured-produkts {
+  transition: transform 0.3s ease;
+}
+.featured-produkts:hover {
+  transform: scale(1.05);
+}
+/* Fade animation for slider images */
+.slides img {
+  opacity: 0;
+  animation: fade 24s infinite;
+}
+@keyframes fade {
+  0%, 20% { opacity: 1; }
+  25%, 45% { opacity: 0; }
+  50%, 70% { opacity: 0; }
+  75%, 100% { opacity: 1; }
+}
