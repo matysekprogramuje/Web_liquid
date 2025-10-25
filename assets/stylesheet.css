@@ -1,0 +1,101 @@
+#header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+
+}
+#logo{
+    width: 150px;
+    cursor: pointer;
+}
+#header-rightt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: 20px;
+    gap: 10px;
+}
+.header-right{
+    width: 30px;
+    cursor:pointer;
+    transition: transform 0.3s ease;
+}
+.header-right:hover{
+    transform: scale(1.1);
+}
+
+.header-text{
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.header-text:hover{
+    transform: scale(1.1);
+}
+
+/* slider */
+.slider {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.slides {
+    display: flex;
+    width: auto;
+
+    animation: slide 24s infinite;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes slide {
+    0%, 60%   { transform: translateX(0); }          /* img1 – stojí déle */
+    65%, 85%  { transform: translateX(-100%); }      /* img2 – stojí déle */
+    90%, 120% { transform: translateX(-200%); }
+}
+
+/*end of the slider*/
+
+
+.nabidka-produktu-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color : #ffffff;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.obrazek_karta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+}
+.featured-produkts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.featured-produkt-text{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.featured-produkt-add-to-cart{
+    width: 50%;
+    height: 30px;
+    background-color: dimgray;
+    border: none;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
